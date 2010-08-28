@@ -43,17 +43,13 @@ var
 		},
 		onTimeout = function()
 		{
-			var
-				vis  = images[visible], fig = figures[visible], link = links[visible]
-			;
+			var vis  = images[visible];
 
-			setImage(vis, -expansion, -expansion, vis.owidth+expansion*2, vis.oheight+expansion*2);
-
-			if (++expansion == expand)
+			if (expansion++ == expand)
 			{
-				var 
-					next = images[++visible] || images[visible = 0],
-					nextfig = figures[visible], nextlink = links[visible]
+				var  fig = figures[visible], link = links[visible],
+				next = images[++visible] || images[visible = 0],
+				nextfig = figures[visible], nextlink = links[visible]
 				;
 
 				vis.className = '';
@@ -65,8 +61,18 @@ var
 				nextfig.className = 'visible';
 				nextlink.className = 'visible';
 			}
+			else
+				setImage(vis, -expansion, -expansion, vis.owidth+expansion*2, vis.oheight+expansion*2);
 		},
-		onClick = function() { }
+		onClick = function() 
+		{ 
+			images[visible].className='';
+			figures[visible].className='';
+			links[visible].className='';
+			visible=(this.value==0 ? images.length : this.value)-1;
+			expansion=expand;
+			return false;
+		}
 	;
 		// Hide All Images
 		for (i=0; i<images.length; i++)
@@ -74,6 +80,7 @@ var
 			span = document.createElement('A');
 			span.href="javascript:";
 			span.onclick = onClick;
+			span.value = i;
 
 			images[i].owidth = images[i].width;
 			images[i].oheight = images[i].height;
