@@ -32,10 +32,7 @@ var
 		/* METHODS */
 		setImage = function(img, x, y, w, h)
 		{
-			img.style.left = x + "px";
-			img.style.top  = y + "px";
-			img.width = w;
-			img.height = h;
+			img.style.cssText = "left:" + x + "px; top:"+y+"px;width:"+w+"px;height:"+h+"px;";
 		},
 		resetImage = function(img)
 		{

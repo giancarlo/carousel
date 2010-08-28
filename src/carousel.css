@@ -11,6 +11,7 @@
 	position: absolute;
 	transition: opacity 1s linear;
 	-webkit-transition: opacity 1s linear;
+	-moz-transition: opacity 1s linear;
 	width: 100%; height: 100%;
 }
 .carousel > figure > figcaption {
@@ -33,6 +34,7 @@
 .carousel > div > a { 
 	margin: 2px 5px;
 	border-radius: 8px; 
+	-moz-border-radius: 8px;
 	display: inline-block; 
 	width: 16px; 
 	height: 16px;
