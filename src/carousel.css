@@ -1,0 +1,38 @@
+.carousel { position: relative; overflow: hidden; }
+.carousel > img {
+	position: absolute;
+	opacity: 0;
+	transition: opacity 1s linear;
+	-webkit-transition: opacity 1s linear;
+}
+
+.carousel > .visible { opacity: 1; }
+
+.carousel > figure { 
+	opacity: 0; 
+	color: #fff; 
+	position: absolute; 
+	bottom: 20px; 
+	margin-left:20px; 
+	transition: opacity 1s linear;
+	-webkit-transition: opacity 1s linear;
+}
+.carousel > figure > h1 { font-size: 40px; text-shadow: 2px 2px 2px #333; padding-bottom: 5px; margin: 0; }
+.carousel > figure > p { font-size: 18px; font-weight: bold;text-shadow: 2px 2px 2px #333; margin:0; }
+
+.carousel > div { 
+	position: absolute; 
+	top: 0; 
+	text-align: center;
+	background-color: rgba(30, 30, 30, 0.5);
+	height: 20px;
+}
+.carousel > div > a { 
+	margin: 2px 5px;
+	border-radius: 8px; 
+	display: inline-block; 
+	width: 16px; 
+	height: 16px;
+	background-color: #000; 
+}
+.carousel > div > a.visible { background-color: red; }

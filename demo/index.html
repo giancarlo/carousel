@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>HTML5 Carousel Example</title>
+	<script src="../src/carousel.js"></script>
+	<link rel="stylesheet" href="../src/carousel.css" />
+	<script>
+		function onload()
+		{
+			pH.carousel(document.getElementById('carousel'));
+		}
+	</script>
+	<style>
+		body { margin: 10px auto; width: 800px; font-family: verdana; }
+	</style>
+</head>
+<body onload="onload();">
+	<h1>HTML5 Carousel Demo</h1>
+	<div id="carousel" class="carousel" style="width: 640px; height: 400px;">
+		<img src="1.jpg" />
+		<figure>
+			<h1>Image 1</h1>
+			<p>Description 1</p>
+		</figure>
+		<img src="2.jpg" />
+		<figure>
+			<h1>Image 2</h1>
+			<p>Description 1</p>
+		</figure>
+		<img src="3.jpg" />
+		<figure>
+			<h1>Image 3</h1>
+			<p>Description 1</p>
+		</figure>
+		<img src="4.jpg" />
+		<figure>
+			<h1>Image 4</h1>
+			<p>Description 1</p>
+		</figure>
+		<img src="5.jpg" />
+		<figure>
+			<h1>Image 5</h1>
+			<p>Description 1</p>
+		</figure>
+	</div>
+</body>
+</html>
