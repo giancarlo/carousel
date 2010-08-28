@@ -43,7 +43,7 @@ var
 		},
 		onTimeout = function()
 		{
-			var vis  = images[visible];
+			var vis  = images[visible]; 
 
 			if (expansion++ == expand)
 			{
@@ -52,21 +52,16 @@ var
 				nextfig = figures[visible], nextlink = links[visible]
 				;
 
-				vis.className = '';
 				resetImage(next);
 				expansion = 0;
-				fig.className = '';
-				link.className = '';
-				next.className = 'visible';
-				nextfig.className = 'visible';
-				nextlink.className = 'visible';
+				fig.className = link.className = '';
+				nextfig.className = nextlink.className = 'visible';
 			}
 			else
 				setImage(vis, -expansion, -expansion, vis.owidth+expansion*2, vis.oheight+expansion*2);
 		},
 		onClick = function() 
 		{ 
-			images[visible].className='';
 			figures[visible].className='';
 			links[visible].className='';
 			visible=(this.value==0 ? images.length : this.value)-1;
@@ -90,7 +85,6 @@ var
 		}
 
 		// Show First
-		images[0].className = 'visible';
 		images[0].owidth = images[0].width;
 		images[0].oheight = images[0].height;
 		figures[0].className = 'visible';
@@ -98,8 +92,6 @@ var
 
 		// Add Navigation Bar		
 		element.appendChild(nav);
-
-		element.v = element.firstChild;
 
 		// Set Timeout
 		setInterval(onTimeout, timeout/expand);
