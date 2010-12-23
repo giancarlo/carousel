@@ -14,45 +14,54 @@
 (function(window, document, undefined)
 {
 var
+	/* Private Methods */
+
+	/** @const */ VISIBLE_CLASS = 'visible',
+
+	setImage = function(img, x, y, w, h)
+	{
+		img.style.cssText = "left:" + x + "px; top:"+y+"px;width:"+w+"px;height:"+h+"px;";
+	},
+
+	resetImage = function(img)
+	{
+		setImage(img, 0, 0, img.owidth, img.oheight);
+	},
+
+	/* Constructor */
 	Carousel = function(element, options)
 	{
 	var 
-		images = element.getElementsByTagName('IMG'),
+		images  = element.getElementsByTagName('IMG'),
 		figures = element.getElementsByTagName('FIGURE'),
 		links=[],
 		i,
 		expansion = 0,
 		/* OPTIONS */
-		timeout = options ? (options.timeout ? options.timeout : 4000) : 4000,
-		expand  = options ? (options.expand  ? options.expand  : 30) : 30,
+		timeout = (options && options.timeout) || 4000, 
+		expand  = (options && options.expand)  || 30, 
 		/* ELEMENTS */
 		nav = document.createElement('DIV'),
 		span,
 		visible = 0,
-		/* METHODS */
-		setImage = function(img, x, y, w, h)
-		{
-			img.style.cssText = "left:" + x + "px; top:"+y+"px;width:"+w+"px;height:"+h+"px;";
-		},
-		resetImage = function(img)
-		{
-			setImage(img, 0, 0, img.owidth, img.oheight);
-		},
+
+		/* Event Handlers */
+
 		onTimeout = function()
 		{
 			var vis  = images[visible]; 
 
 			if (expansion++ == expand)
 			{
-				var  fig = figures[visible], link = links[visible],
-				next = images[++visible] || images[visible = 0],
-				nextfig = figures[visible], nextlink = links[visible]
+				var fig     = figures[visible], link = links[visible],
+				    next    = images[++visible] || images[visible = 0],
+				    nextfig = figures[visible], nextlink = links[visible]
 				;
 
 				resetImage(next);
 				expansion = 0;
 				fig.className = link.className = '';
-				nextfig.className = nextlink.className = 'visible';
+				nextfig.className = nextlink.className = VISIBLE_CLASS;
 			}
 			else
 				setImage(vis, -expansion, -expansion, vis.owidth+expansion*2, vis.oheight+expansion*2);
@@ -63,7 +72,6 @@ var
 			links[visible].className='';
 			visible=(this.value==0 ? images.length : this.value)-1;
 			expansion=expand;
-			return false;
 		}
 	;
 		// Hide All Images
@@ -82,10 +90,8 @@ var
 		}
 
 		// Show First
-		images[0].owidth = images[0].width;
-		images[0].oheight = images[0].height;
-		figures[0].className = 'visible';
-		links[0].className = 'visible';
+		figures[0].className = VISIBLE_CLASS;
+		links[0].className   = VISIBLE_CLASS;
 
 		// Add Navigation Bar		
 		element.appendChild(nav);
