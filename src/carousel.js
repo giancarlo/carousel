@@ -31,15 +31,22 @@ var
 	/* Constructor */
 	Carousel = function(element, options)
 	{
-	var 
+		options = options || {};
+
+		if (typeof(element)==='string')
+			element = document.querySelector(element);
+
+	var
 		images  = element.getElementsByTagName('IMG'),
 		figures = element.getElementsByTagName('FIGURE'),
 		links=[],
 		i,
 		expansion = 0,
+
 		/* OPTIONS */
-		timeout = (options && options.timeout) || 4000, 
-		expand  = (options && options.expand)  || 30, 
+		timeout = (options && options.timeout) || 4000,
+		expand  = (options && options.expand)  || 60,
+
 		/* ELEMENTS */
 		nav = document.createElement('DIV'),
 		span,
@@ -49,14 +56,15 @@ var
 
 		onTimeout = function()
 		{
-			var vis  = images[visible]; 
+			var vis  = images[visible];
 
 			if (expansion++ == expand)
 			{
-				var fig     = figures[visible], link = links[visible],
-				    next    = images[++visible] || images[visible = 0],
-				    nextfig = figures[visible], nextlink = links[visible]
-				;
+			var
+				fig     = figures[visible], link = links[visible],
+				next    = images[++visible] || images[visible = 0],
+				nextfig = figures[visible], nextlink = links[visible]
+			;
 
 				resetImage(next);
 				expansion = 0;
@@ -66,19 +74,21 @@ var
 			else
 				setImage(vis, -expansion, -expansion, vis.owidth+expansion*2, vis.oheight+expansion*2);
 		},
-		onClick = function() 
-		{ 
+		onClick = function()
+		{
 			figures[visible].className='';
 			links[visible].className='';
-			visible=(this.value==0 ? images.length : this.value)-1;
+			visible=(this.value===0 ? images.length : this.value)-1;
 			expansion=expand;
+			return false;
 		}
 	;
+		element.className = 'carousel';
 		// Hide All Images
 		for (i=0; i<images.length; i++)
 		{
 			span = document.createElement('A');
-			span.href="javascript:";
+			span.href="#";
 			span.onclick = onClick;
 			span.value = i;
 
@@ -93,18 +103,15 @@ var
 		figures[0].className = VISIBLE_CLASS;
 		links[0].className   = VISIBLE_CLASS;
 
-		// Add Navigation Bar		
+		// Add Navigation Bar
 		element.appendChild(nav);
 
 		// Set Timeout
 		setInterval(onTimeout, timeout/expand);
 	}
 ;
-	
-	if (!window.pH)
-		window.pH = {};
-	
-	window.pH.carousel = Carousel;
+
+	window.Carousel = Carousel;
 
 })(this, document);
 

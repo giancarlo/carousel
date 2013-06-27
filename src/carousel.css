@@ -1,13 +1,11 @@
 .carousel { position: relative; overflow: hidden; }
 
-.carousel > figure > img {
-	position: absolute;
-}
-
+.carousel > figure > img { position: absolute; }
 .carousel > .visible { opacity: 1; }
 
 .carousel > figure { 
 	opacity: 0; 
+	margin: 0;
 	position: absolute;
 	transition: opacity 1s linear;
 	-webkit-transition: opacity 1s linear;

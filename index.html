@@ -1,10 +1,55 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" href="src/carousel.css" />
 	<title>Carousel</title>
+	<style>
+		body { margin: 10px auto; width: 800px; font-family: verdana; }
+		#carousel { margin: 0 auto; width: 640px; height: 400px; }
+		code { white-space: pre; }
+	</style>
 </head>
 <body>
 	<h1>HTML5 Carousel/Slideshow</h1>
+
+	<h2>Demo</h2>
+	<div id="carousel">
+		<figure>
+			<img src="demo/1.jpg" />
+			<figcaption>
+				<h1>Image 1</h1>
+				<p>Description 1</p>
+			</figcaption>
+		</figure>
+		<figure>
+			<img src="demo/2.jpg" />
+			<figcaption>
+				<h1>Image 2</h1>
+				<p>Description 2</p>
+			</figcaption>
+		</figure>
+		<figure>
+			<img src="demo/3.jpg" />
+			<figcaption>
+				<h1>Image 3</h1>
+				<p>Description 3</p>
+			</figcaption>
+		</figure>
+		<figure>
+			<img src="demo/4.jpg" />
+			<figcaption>
+				<h1>Image 4</h1>
+				<p>Description 4</p>
+			</figcaption>
+		</figure>
+		<figure>
+			<img src="demo/5.jpg" />
+			<figcaption>
+				<h1>Image 5</h1>
+				<p>Description 5</p>
+			</figcaption>
+		</figure>
+	</div>
 
 	<h2>Download</h2>
 	<ul>
@@ -32,6 +77,13 @@
 	<ul>
 	<li><a href="http://github.com/giancarlo/carousel">Github</a></li>
 	</ul>
-
+	
+	<script src="src/carousel.js"></script>
+	<script id="code">
+		window.onload= function()
+		{
+			new Carousel(document.getElementById('carousel'));
+		}
+	</script>
 </body>
 </html>
